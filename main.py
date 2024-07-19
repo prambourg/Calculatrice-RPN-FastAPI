@@ -8,6 +8,8 @@ DIV = "div"
 MUL = "mul"
 OPERAND = [AND, MINUS, DIV, MUL]
 
+NOT_FOUND = "stack_id not found"
+
 app = FastAPI()
 
 stacks: dict[str, list[float]] = {}
@@ -24,7 +26,7 @@ def list_all_the_operand():
 @app.post("/rpn/op/{op}/stack/{stack_id}")
 def apply_an_operand_to_a_stack(op: str, stack_id: str):
     if stack_id not in stacks.keys():
-        raise HTTPException(status_code=404, detail="Wrong stack_id")
+        raise HTTPException(status_code=404, detail=NOT_FOUND)
     if op not in OPERAND:
         raise HTTPException(status_code=400, detail="Wrong operand")
     if len(stacks[stack_id]) < 2:
@@ -56,19 +58,19 @@ def list_the_available_stack():
 @app.delete("/rpn/op/{stack_id}")
 def delete_a_stack(stack_id: str):
     if stack_id not in stacks.keys():
-        raise HTTPException(status_code=404, detail="stack_id not found")
+        raise HTTPException(status_code=404, detail=NOT_FOUND)
     del stacks[stack_id]
     return {"stacks": stacks}
 
 @app.post("/rpn/stack/{stack_id}")
 def push_a_new_value_to_a_stack(stack_id: str, value: Value):
     if stack_id not in stacks.keys():
-        raise HTTPException(status_code=404, detail="stack_id not found")
+        raise HTTPException(status_code=404, detail=NOT_FOUND)
     stacks[stack_id].append(value.value)
     return {"stack": stacks[stack_id]}
 
 @app.get("/rpn/{stack_id}")
 def get_a_stack(stack_id: str):
     if stack_id not in stacks.keys():
-        raise HTTPException(status_code=404, detail="stack_id not found")
+        raise HTTPException(status_code=404, detail=NOT_FOUND)
     return {"stack": stacks[stack_id]}

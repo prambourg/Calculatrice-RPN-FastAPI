@@ -24,7 +24,7 @@ def list_all_the_operand():
 @app.post("/rpn/op/{op}/stack/{stack_id}")
 def apply_an_operand_to_a_stack(op: str, stack_id: str):
     if stack_id not in stacks.keys():
-        raise HTTPException(status_code=400, detail="Wrong stack_id")
+        raise HTTPException(status_code=404, detail="Wrong stack_id")
     if op not in OPERAND:
         raise HTTPException(status_code=400, detail="Wrong operand")
     if len(stacks[stack_id]) < 2:

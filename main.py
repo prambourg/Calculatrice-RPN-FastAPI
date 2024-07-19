@@ -33,8 +33,6 @@ def apply_an_operand_to_a_stack(op: str, stack_id: str):
         raise HTTPException(status_code=403, detail="Division by 0 impossible")
     
     item2, item1 = float(stacks[stack_id].pop()), float(stacks[stack_id].pop())
-    print(item1, item2)
-    print(stacks)
     if op == AND:
         stacks[stack_id].append(item1 + item2)
     if op == MINUS:

@@ -1,8 +1,19 @@
-### Exercice technique pour le CACIB
+# Exercice technique pour le CACIB
 ## Enoncé
-
-Faire une calculatrice sous forme de stack. On peut récupérer les stacks, les supprimer et les modifier de 2 manières : ajouter un élément ou appliquer une opération (addition, soustraction, multiplication, division)
-
+### Contexte
+Réalisation d’une calculatrice RPN (notation polonaise inversée) en mode client/serveur. Utilisation de FastAPI ou Flask au choix, j'ai choisi FastAPI pour Swagger UI et l'interaction aisée avec l'API.
+### Fonctionnalités demandées
+- Ajout d’un élément dans une pile
+- Récupération de la pile
+- Nettoyage de la pile
+- Opération +
+- Opération -
+- Opération *
+- Opération /
+### Livrables
+- Repo GitHub (celui-là même)
+- Fichier todo.md regroupant améliorations et raccourcis dans le contexte d'une production ultra courte (~2h)
+- Fichier roadmap.md contenant un backlog plus étoffé pour de futurs développement
 ## Utilisation
 Création de l'environnement virtuel
 > python -m venv venv
